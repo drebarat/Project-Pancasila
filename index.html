@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancasila di Era Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: gold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.3));
+            border: 2px solid #fbbf24;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+            color: #fbbf24;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        .nav-links a.active {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.4));
+            border: 2px solid #fbbf24;
+            color: #fbbf24;
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Hero Section dengan Peta Indonesia */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .map-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 900px;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .garuda-container {
+            position: relative;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        .garuda-symbol {
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Sila Cards */
+        .sila-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .sila-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .sila-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+        }
+
+        .sila-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tips Cards */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        /* Forum Section */
+        .forum-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            margin: 2rem 0;
+        }
+
+        .comment-form {
+            margin-bottom: 2rem;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .comment-form input::placeholder,
+        .comment-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .comment {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #fbbf24;
+        }
+
+        /* About Section */
+        .about-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            margin: 2rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                padding: 1rem 3%;
+            }
+            
+            main {
+                padding: 1rem 3%;
+            }
+            
+            .section {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+        }
+
+        /* Floating Animation for Garuda */
+        .garuda-symbol {
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            margin: 1rem;
+        }
+        
+        /* Scroll down indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator span {
+            margin-bottom: 5px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+    </style>
+</head>
+<body>
+     <header>
+        <nav>
+            <div class="logo"> Pancasila Digital</div>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#nilai-pancasila">Nilai Pancasila</a></li>
+                <li><a href="#tips-digital">Tips Digital</a></li>
+                <li><a href="#kuis">Kuis</a></li>
+                <li><a href="#forum">Forum</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Beranda Section -->
+        <section id="beranda" class="section">
+            <div class="hero">
+                <!-- Peta Indonesia sebagai background -->
+                <img src="peta.webp" 
+                     alt="Peta Indonesia" 
+                     class="map-background">
+                
+                <div class="hero-content">
+                    <div class="garuda-container">
+                        <div class="garuda-symbol"><img src="garuda.png" alt="Garuda Pancasila"></div>
+                    </div>
+                    <h1>Pancasila di Era Digital</h1>
+                    <p>Menghadirkan nilai-nilai luhur bangsa dalam kehidupan digital yang bermakna</p>
+                    
+                    <div class="quote-card">
+                        <h3>💭 Kutipan Inspiratif</h3>
+                        <p><em>"Pancasila bukan hanya ideologi, tetapi way of life yang harus diwujudkan dalam setiap aspek kehidupan, termasuk di dunia digital."</em></p>
+                        <p><strong>- Ir. Soekarno, Proklamator RI</strong></p>
+                    </div>
+                </div>
+
+                <div class="cards-container">
+                    <a href="#nilai-pancasila" class="card">
+                        <h3>🌟 Pelajari Nilai Pancasila</h3>
+                        <p>Jelajahi setiap sila Pancasila dan implementasinya dalam kehidupan digital modern.</p>
+                    </a>
+                    <a href="#tips-digital" class="card">
+                        <h3>💡 Tips Etika Digital</h3>
+                        <p>Panduan praktis menerapkan nilai Pancasila dalam berinteraksi di dunia maya.</p>
+                    </a>
+                    <a href="#kuis" class="card">
+                        <h3>🎯 Kuis Interaktif</h3>
+                        <p>Uji pemahaman Anda tentang Pancasila melalui kuis yang menarik dan edukatif.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nilai Pancasila Section -->
+        <section id="nilai-pancasila" class="section">
+            <div class="hero">
+                <h1>🌟 Nilai-Nilai Pancasila</h1>
+                <p>Lima sila yang menjadi panduan hidup bangsa Indonesia di era digital</p>
+            </div>
+
+            <div class="sila-grid">
+                <div class="sila-card">
+                    <div class="sila-number">1️⃣</div>
+                    <h3>Ketuhanan Yang Maha Esa</h3>
+                    <p><strong>Di Era Digital:</strong> Menggunakan teknologi untuk hal-hal positif, tidak menyebarkan konten yang bertentangan dengan nilai agama, dan memanfaatkan platform digital untuk dakwah yang baik.</p>
+                </div>
+                <div class="sila-card">
+                    <div class="sila-number">2️⃣</div>
+                    <h3>Kemanusiaan Yang Adil dan Beradab</h3>
+                    <p><strong>Di Era Digital:</strong> Menghormati privasi orang lain, tidak melakukan cyberbullying, dan memperlakukan semua netizen dengan adil tanpa diskriminasi.</p>
+                </div>
+                <div class="sila-card">
+                    <div class="sila-number">3️⃣</div>
+                    <h3>Persatuan Indonesia</h3>
+                    <p><strong>Di Era Digital:</strong> Menggunakan media sosial untuk mempersatukan bangsa, tidak menyebarkan hoaks yang memecah belah, dan mempromosikan keberagaman Indonesia.</p>
+                </div>
+                <div class="sila-card">
+                    <div class="sila-number">4️⃣</div>
+                    <h3>Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan</h3>
+                    <p><strong>Di Era Digital:</strong> Berpartisipasi dalam diskusi online yang konstruktif, menghargai perbedaan pendapat, dan menggunakan platform digital untuk aspirasi yang positif.</p>
+                </div>
+                <div class="sila-card">
+                    <div class="sila-number">5️⃣</div>
+                    <h3>Keadilan Sosial bagi Seluruh Rakyat Indonesia</h3>
+                    <p><strong>Di Era Digital:</strong> Mendukung UMKM melalui platform digital, berbagi informasi yang bermanfaat untuk semua kalangan, dan tidak memanfaatkan teknologi untuk kepentingan sepihak.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Digital Section -->
+        <section id="tips-digital" class="section">
+            <div class="hero">
+                <h1>💡 PancaTips Digital</h1>
+                <p>Panduan praktis menerapkan nilai Pancasila dalam kehidupan digital</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>🙏 Tip Sila Pertama</h3>
+                    <h4>Gunakan Teknologi dengan Bijak</h4>
+                    <ul>
+                        <li>Awali aktivitas digital dengan doa</li>
+                        <li>Hindari konten yang bertentangan dengan nilai agama</li>
+                        <li>Gunakan platform digital untuk kegiatan positif</li>
+                        <li>Ingat bahwa Allah selalu melihat aktivitas kita</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>🤝 Tip Sila Kedua</h3>
+                    <h4>Berlaku Adil di Dunia Maya</h4>
+                    <ul>
+                        <li>Hormati privasi dan hak orang lain</li>
+                        <li>Jangan lakukan cyberbullying</li>
+                        <li>Perlakukan semua netizen dengan hormat</li>
+                        <li>Beri bantuan kepada yang membutuhkan</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>🇮🇩 Tip Sila Ketiga</h3>
+                    <h4>Persatukan, Jangan Memecah Belah</h4>
+                    <ul>
+                        <li>Cek faktanya sebelum share</li>
+                        <li>Promosikan keberagaman Indonesia</li>
+                        <li>Gunakan bahasa yang mempersatukan</li>
+                        <li>Bangga dengan produk dan budaya lokal</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>🗳️ Tip Sila Keempat</h3>
+                    <h4>Berdemokrasi dengan Santun</h4>
+                    <ul>
+                        <li>Diskusi dengan kepala dingin</li>
+                        <li>Hargai perbedaan pendapat</li>
+                        <li>Sampaikan aspirasi secara konstruktif</li>
+                        <li>Ikuti musyawarah digital dengan sopan</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>⚖️ Tip Sila Kelima</h3>
+                    <h4>Wujudkan Keadilan Digital</h4>
+                    <ul>
+                        <li>Dukung UMKM melalui platform digital</li>
+                        <li>Bagikan informasi yang bermanfaat</li>
+                        <li>Jangan monopoli akses informasi</li>
+                        <li>Bantu yang kurang melek teknologi</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kuis Section -->
+        <section id="kuis" class="section">
+            <div class="hero">
+                <h1>🎯 Kuis Pancasila Digital</h1>
+                <p>Uji pemahaman Anda tentang penerapan Pancasila di era digital</p>
+            </div>
+
+            <div class="quiz-container">
+                <div id="quiz-content">
+                    <div class="quiz-question" id="question">
+                        Apa yang sebaiknya dilakukan sebelum membagikan informasi di media sosial?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(0)">
+                            A. Langsung bagikan agar cepat viral
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(1)">
+                            B. Cek kebenaran informasi terlebih dahulu
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(2)">
+                            C. Tambahkan komentar pribadi
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(3)">
+                            D. Bagikan ke semua grup yang ada
+                        </div>
+                    </div>
+                    <button class="btn" onclick="nextQuestion()">Jawab</button>
+                </div>
+                <div id="quiz-result" style="display: none;">
+                    <h3>🎉 Selamat!</h3>
+                    <p>Anda telah menyelesaikan kuis. Skor Anda: <span id="score">0</span>/5</p>
+                    <button class="btn" onclick="restartQuiz()">Ulangi Kuis</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forum Section -->
+        <section id="forum" class="section">
+            <div class="hero">
+                <h1>💬 Forum Diskusi</h1>
+                <p>Ruang diskusi tentang penerapan Pancasila di era digital</p>
+            </div>
+
+            <div class="forum-container">
+                <div class="comment-form">
+                    <h3>💭 Bagikan Pendapat Anda</h3>
+                    <input type="text" id="nama" placeholder="Nama Anda" />
+                    <textarea id="komentar" placeholder="Bagaimana menurut Anda penerapan Pancasila di era digital?" rows="4"></textarea>
+                    <button class="btn" onclick="addComment()">Kirim Komentar</button>
+                </div>
+
+                <div id="comments-section">
+                    <div class="comment">
+                        <strong>🙋‍♀️ Sari</strong>
+                        <p>Menurut saya, nilai gotong royong dalam Pancasila bisa diterapkan dengan membantu teman yang kesulitan belajar online melalui grup belajar digital.</p>
+                    </div>
+                    <div class="comment">
+                        <strong>🙋‍♂️ Budi</strong>
+                        <p>Saya setuju! Kita juga bisa menerapkan sila ke-3 dengan tidak menyebarkan hoaks yang bisa memecah belah persatuan bangsa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tentang Section -->
+        <section id="tentang" class="section">
+            <div class="hero">
+                <h1>👥 Tentang Kami</h1>
+                <p>Tim kreatif di balik website Pancasila di Era Digital</p>
+            </div>
+
+            <div class="about-container">
+                <h3>🎯 Visi Kami</h3>
+                <p>Menjadi platform digital terdepan dalam mengenalkan dan mengimplementasikan nilai-nilai Pancasila kepada generasi digital Indonesia.</p>
+                
+                <h3>🚀 Misi Kami</h3>
+                <ul>
+                    <li>Mengedukasi masyarakat tentang relevansi Pancasila di era digital</li>
+                    <li>Menyediakan panduan praktis etika digital berdasarkan Pancasila</li>
+                    <li>Membangun komunitas digital yang beradab dan berkarakter</li>
+                    <li>Melestarikan nilai-nilai luhur bangsa melalui teknologi modern</li>
+                </ul>
+
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h4>👨‍💻 Andreas Nugraha Hutabarat</h4>
+                        <p>Mahasiswa TRPL-2A</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>👨‍🎨 Samuel Halasson Lumbantoruan</h4>
+                        <p>Mahasiswa TRPL</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p><em>"Bersama-sama kita wujudkan Indonesia digital yang berkarakter Pancasila!"</em></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation functionality
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                    currentSectionId = section.id;
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active nav on scroll
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('load', updateActiveNav);
+
+        // Quiz functionality
+        const quizQuestions = [
+            {
+                question: "Apa yang sebaiknya dilakukan sebelum membagikan informasi di media sosial?",
+                options: [
+                    "Langsung bagikan agar cepat viral",
+                    "Cek kebenaran informasi terlebih dahulu",
+                    "Tambahkan komentar pribadi",
+                    "Bagikan ke semua grup yang ada"
+                ],
+                correct: 1
+            },
+            {
+                question: "Sila Pancasila manakah yang berkaitan dengan tidak melakukan cyberbullying?",
+                options: [
+                    "Sila Pertama",
+                    "Sila Kedua - Kemanusiaan Yang Adil dan Beradab",
+                    "Sila Ketiga",
+                    "Sila Keempat"
+                ],
+                correct: 1
+            },
+            {
+                question: "Bagaimana cara menerapkan sila ketiga di media sosial?",
+                options: [
+                    "Hanya berteman dengan orang satu daerah",
+                    "Menyebarkan konten yang mempersatukan bangsa",
+                    "Menggunakan bahasa daerah saja",
+                    "Menghindari diskusi dengan orang lain"
+                ],
+                correct: 1
+            },
+            {
+                question: "Apa contoh penerapan sila kelima dalam ekonomi digital?",
+                options: [
+                    "Hanya membeli produk luar negeri",
+                    "Mendukung UMKM melalui platform digital",
+                    "Memonopoli pasar online",
+                    "Menjual barang dengan harga tinggi"
+                ],
+                correct: 1
+            },
+            {
+                question: "Mengapa penting menerapkan Pancasila di era digital?",
+                options: [
+                    "Untuk mengikuti tren",
+                    "Agar terlihat nasionalis",
+                    "Menjaga karakter bangsa di dunia maya",
+                    "Menghindari masalah hukum"
+                ],
+                correct: 2
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedAnswer = -1;
+
+        function selectAnswer(optionIndex) {
+            selectedAnswer = optionIndex;
+            
+            // Reset all options
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.style.background = 'rgba(255, 255, 255, 0.1)';
+                option.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+            });
+            
+            // Highlight selected option
+            options[optionIndex].style.background = 'rgba(251, 191, 36, 0.3)';
+            options[optionIndex].style.border = '2px solid #fbbf24';
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === -1) {
+                alert('Silakan pilih jawaban terlebih dahulu!');
+                return;
+            }
+            
+            // Check if answer is correct
+            if (selectedAnswer === quizQuestions[currentQuestionIndex].correct) {
+                score++;
+            }
+            
+            currentQuestionIndex++;
+            selectedAnswer = -1;
+            
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function loadQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('question').textContent = question.question;
+            
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((option, index) => {
+                option.textContent = question.options[index];
+                option.style.background = 'rgba(255, 255, 255, 0.1)';
+                option.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+            });
+        }
+
+        function showResult() {
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('quiz-result').style.display = 'block';
+            document.getElementById('score').textContent = score;
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            selectedAnswer = -1;
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('quiz-result').style.display = 'none';
+            loadQuestion();
+        }
+
+        // Comments functionality
+        function addComment() {
+            const nama = document.getElementById('nama').value;
+            const komentar = document.getElementById('komentar').value;
+            
+            if (!nama || !komentar) {
+                alert('Silakan isi nama dan komentar!');
+                return;
+            }
+            
+            const commentsSection = document.getElementById('comments-section');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.innerHTML = `
+                <strong>🙋‍♂️ ${nama}</strong>
+                <p>${komentar}</p>
+            `;
+            
+            commentsSection.insertBefore(newComment, commentsSection.firstChild);
+            
+            // Clear form
+            document.getElementById('nama').value = '';
+            document.getElementById('komentar').value = '';
+            
+            // Show success message
+            alert('Komentar berhasil ditambahkan!');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 60, 114, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Initialize quiz
+        loadQuestion();
+
+        // Add floating animation to cards
+        document.querySelectorAll('.card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Easter egg - Konami code for special animation
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // Up Up Down Down Left Right Left Right B A
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.length === konamiSequence.length && 
+                konamiCode.every((code, i) => code === konamiSequence[i])) {
+                
+                // Special Pancasila animation
+                document.body.style.animation = 'rainbow 2s infinite';
+                
+                // Add rainbow animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes rainbow {
+                        0% { filter: hue-rotate(0deg); }
+                        100% { filter: hue-rotate(360deg); }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                    alert('🎉 Selamat! Anda menemukan Easter Egg Pancasila! 🦅');
+                }, 2000);
+                
+                konamiCode = [];
+            }
+        });
+    </script>
+</body>
+</html>
